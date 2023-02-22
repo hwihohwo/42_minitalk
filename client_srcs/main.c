@@ -25,12 +25,13 @@ void	send_sig(pid_t pid, char *str)
 		while (shift >= 0)
 		{
 			sav = str[i];
-			sav >> shift;
+			sav >>= shift;
 			if (sav % 2 == 0)
 				kill(pid, SIGUSR1);
 			else if (sav % 2 == 1)
 				kill(pid, SIGUSR2);
 			shift--;
+			usleep(30);
 		}
 		if (str[i] == '\0')
 			return ;

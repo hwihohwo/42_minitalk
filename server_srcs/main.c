@@ -12,29 +12,27 @@
 
 #include "server.h"
 
-void	*get_string(int sig)
+void	get_string(int sig)
 {
-	int		i;
-	char 	c;
+	static int		i;
+	static char 	c;
 
-	i = 0;
-	while (1)
+	if (sig == SIGUSR1)
+		c <<= 1;
+	else if (sig == SIGUSR2)
 	{
-		c = 0;
-		while (i < 8)
-		{
-			if (sig == SIGUSR1)
-				c << 1;
-			else if (sig == SIGUSR2)
-			{
-				c << 1;
-				c += 1;
-			}
-		}
+		c <<= 1;
+		c += 1;
+	}
+	i++;
+	if (i == 8)
+	{
 		if (c == '\0')
-			return (0);
+			write(1, "\n", 1);
 		else
 			write(1, &c, 1);
+		i = 0;
+		c = 0;
 	}
 }
 
