@@ -45,9 +45,13 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		ft_printf("%s\n", "wrong input");
+		ft_printf("wrong input\n");
 		exit(1);
 	}
 	pid = ft_atoi(argv[1]);
+	if (pid <= 100 || pid > 32768)
+	{
+		ft_printf("wrong pid\n");
+	}
 	send_sig(pid, argv[2]);
 }
