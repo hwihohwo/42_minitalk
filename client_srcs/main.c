@@ -49,9 +49,11 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	pid = ft_atoi(argv[1]);
-	if (pid <= 100 || pid > 32768)
+	if (pid <= 100 || pid > 99998)
 	{
 		ft_printf("wrong pid\n");
+		exit(1);
 	}
 	send_sig(pid, argv[2]);
+	return (0);
 }

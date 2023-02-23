@@ -15,7 +15,7 @@
 void	get_string(int sig)
 {
 	static int		i;
-	static char 	c;
+	static char		c;
 
 	if (sig == SIGUSR1)
 		c <<= 1;
@@ -38,7 +38,7 @@ void	get_string(int sig)
 
 int	main(void)
 {
-	pid_t pid;
+	pid_t	pid;
 
 	pid = getpid();
 	ft_printf("PID : %d\n", pid);
@@ -46,4 +46,5 @@ int	main(void)
 	signal(SIGUSR2, get_string);
 	while (1)
 		pause();
+	return (0);
 }
